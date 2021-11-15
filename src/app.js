@@ -20,25 +20,46 @@ const [filterTodos,setFilterTodo] = useState([]);
 
 // Use Effect
 
+
+
+
+    useEffect(() => {
+        getLocalTodos();
+    },[]);
+
+
     useEffect(()=>{
         filterHandler();
+        saveLocalTodos();
     }, [status, todos ])
 
-const filterHandler = () =>{
-    switch (status){
-        case 'completed':
-            setFilterTodo(todos.filter((todo)=>todo.completed===true))
-            break;
-        case 'uncompleted':
-            setFilterTodo(todos.filter((todo)=>todo.completed===false))
-            break;
-        default:
-            setFilterTodo(todos)
-            break;
+    const filterHandler = () =>{
+        switch (status){
+            case 'completed':
+                setFilterTodo(todos.filter((todo)=>todo.completed===true))
+                break;
+            case 'uncompleted':
+                setFilterTodo(todos.filter((todo)=>todo.completed===false))
+                break;
+            default:
+                setFilterTodo(todos)
+                break;
+        }
     }
-}
 
 
+    const saveLocalTodos = () =>{
+        localStorage.setItem('todos', JSON.stringify(todos))
+    }
+
+    const getLocalTodos = ()=>{
+            if(localStorage.getItem('todos')==null){
+                localStorage.setItem('todos', JSON.stringify([]))
+            }else{
+                let localTodos =  JSON.parse(localStorage.getItem('todos'))
+                setTodos(localTodos)
+            }
+    }
 
     return(
         <div className="app-wrapper">

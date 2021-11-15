@@ -4,11 +4,8 @@ import isEmpty from "validator/es/lib/isEmpty";
 
 
 export default ({setInputText, inputText, todos, setTodos, setStatus, setError, error })=>{
-    console.log(inputText)
-
     const inputTextHandler= (e)=>{
         setInputText(e.target.value)
-
     }
 
     const submitTodoHandler =(e)=>{
