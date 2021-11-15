@@ -15,15 +15,14 @@ export default ({setInputText, inputText, todos, setTodos, setStatus, setError, 
         e.preventDefault()
         if(!inputText){
             setError(true)
-        }else{
+        }
+        else{
             setTodos([
                 ...todos, {text:inputText, completed:false, id:uuid()}
             ])
             setError(false)
             setInputText("")
         }
-
-
     }
 
     const statusHandler = (e) =>{

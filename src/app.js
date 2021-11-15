@@ -21,7 +21,6 @@ const [filterTodos,setFilterTodo] = useState([]);
 // Use Effect
 
     useEffect(()=>{
-        console.log("something changed");
         filterHandler();
     }, [status, todos ])
 
