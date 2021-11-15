@@ -19,7 +19,7 @@ const ListItem = ({todo, todos, setTodos})=>{
     }
 
     return(
-        <div className="todo">
+        <div className={`todo ${todo.completed ? "completed": ''}`}>
             <li className="todo-item">{todo.text}</li>
             <button className="complete-btn"
                     onClick={completeHandler}
