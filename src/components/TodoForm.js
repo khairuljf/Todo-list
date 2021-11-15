@@ -1,8 +1,10 @@
 import React from "react";
 import uuid from "react-uuid";
+import isEmpty from "validator/es/lib/isEmpty";
 
 
-export default ({setInputText, inputText, todos, setTodos, setStatus })=>{
+export default ({setInputText, inputText, todos, setTodos, setStatus, setError, error })=>{
+    console.log(inputText)
 
     const inputTextHandler= (e)=>{
         setInputText(e.target.value)
@@ -10,16 +12,21 @@ export default ({setInputText, inputText, todos, setTodos, setStatus })=>{
     }
 
     const submitTodoHandler =(e)=>{
-
         e.preventDefault()
-        setTodos([
-          ...todos, {text:inputText, completed:false, id:uuid()}
-        ])
-        setInputText("")
+        if(!inputText){
+            setError(true)
+        }else{
+            setTodos([
+                ...todos, {text:inputText, completed:false, id:uuid()}
+            ])
+            setError(false)
+            setInputText("")
+        }
+
+
     }
 
     const statusHandler = (e) =>{
-        console.log(e.target.value)
         setStatus(e.target.value)
     }
 
@@ -27,6 +34,7 @@ export default ({setInputText, inputText, todos, setTodos, setStatus })=>{
 
     return (
         <div className="todo-form">
+
             <form >
                 <input
                     type="text"
@@ -34,6 +42,7 @@ export default ({setInputText, inputText, todos, setTodos, setStatus })=>{
                     name="todo"
                     onChange={inputTextHandler}
                     value={inputText}
+                    placeholder="Enter list name"
                 />
 
                 <button
@@ -53,6 +62,7 @@ export default ({setInputText, inputText, todos, setTodos, setStatus })=>{
                     </select>
                 </div>
             </form>
+            {error && <p className="error-message">Fill the form please.</p>}
         </div>
     )
 }

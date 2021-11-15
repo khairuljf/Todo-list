@@ -15,6 +15,7 @@ const App = ()=>{
 const [inputText, setInputText] = useState("");
 const [todos,setTodos] = useState([]);
 const [status,setStatus] = useState('all');
+const [error, setError] = useState(false);
 const [filterTodos,setFilterTodo] = useState([]);
 
 // Use Effect
@@ -49,6 +50,8 @@ const filterHandler = () =>{
                 setTodos={setTodos}
                 inputText={inputText}
                 setStatus={setStatus}
+                setError={setError}
+                error={error}
             />
             <TodoList
                 todos={todos}

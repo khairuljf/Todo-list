@@ -136,6 +136,15 @@ select {
   cursor: pointer;
   pointer-events: none;
 }
+
+p.error-message {
+  background: red;
+  text-align: center;
+  padding: 0 20px;
+  width: max-content;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
 /* Transition */
 /*
 .select:hover::after {
